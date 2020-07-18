@@ -9,8 +9,8 @@
   
 
 .current-conditions {
-    height: 270px;
-    width: 570px;
+    height: 330px;
+    width: 650px;
     background-color: $white;
     border-radius: 5px;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
@@ -25,11 +25,17 @@
         width: 50%;
         font-size: 8em;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         color: $lightAccent;
         font-weight: 900;
         font-family: 'Roboto', sans-serif;
+        flex-direction: column;
+
+        p {
+            font-size: 1.5rem;
+            color: $base;
+        }
     }
 
     .stats-wrapper {
@@ -51,7 +57,7 @@
             align-items: center;
             padding: 20px 0px;
             color: $base;
-            border-bottom: solid 2px $lightBlue ;
+            border-bottom: solid 1px $lightBlue ;
         }
 
         .bottom{
