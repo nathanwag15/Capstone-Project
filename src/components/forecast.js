@@ -65,6 +65,7 @@ import t05d from "../../static/assets/images/icons/t05d.png";
 import u00d from "../../static/assets/images/icons/u00d.png";
 import u00n from "../../static/assets/images/icons/u00n.png";
 
+
 export default class Forecasts extends Component{
     constructor(){
         super()
@@ -348,53 +349,126 @@ export default class Forecasts extends Component{
         });
     }
 
+    
+
     render(){
         if (this.state.data === ''){
             return(null)
         } else {
         return(
-            <div>
-                <div>
-                    {this.state.data.data[0].high_temp}
-                    {this.state.data.data[0].low_temp}
-                    {this.iconSelector(this.state.data.data[0].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[1].high_temp}
-                    {this.state.data.data[1].low_temp}
-                    {this.iconSelector(this.state.data.data[1].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[2].high_temp}
-                    {this.state.data.data[2].low_temp}
-                    {this.iconSelector(this.state.data.data[2].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[3].high_temp}
-                    {this.state.data.data[3].low_temp}
-                    {this.iconSelector(this.state.data.data[3].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[4].high_temp}
-                    {this.state.data.data[4].low_temp}
-                    {this.iconSelector(this.state.data.data[4].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[5].high_temp}
-                    {this.state.data.data[5].low_temp}
-                    {this.iconSelector(this.state.data.data[5].weather.icon)}
-                </div>
-                <div>
-                    {this.state.data.data[6].high_temp}
-                    {this.state.data.data[6].low_temp}
-                    {this.iconSelector(this.state.data.data[6].weather.icon)}
-                </div>
-                <div>
-                    <div>
-                        {this.state.data.data[7].high_temp}
+            <div className="forecast-wrapper">
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[0].datetime}
                     </div>
-                    {this.state.data.data[7].low_temp}
-                    {this.iconSelector(this.state.data.data[7].weather.icon)}
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[0].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[0].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[0].low_temp}
+                    </div>
+                </div>
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[1].datetime}
+                    </div>                   
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[1].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[1].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[1].low_temp}
+                    </div>
+                </div>
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[2].datetime}
+                    </div>                    
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[2].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[2].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[2].low_temp}
+                    </div>
+                </div>
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[3].datetime}
+                    </div>
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[3].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[3].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[3].low_temp}
+                    </div>
+                </div>
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[4].datetime}
+                    </div>                    
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[4].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[4].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[4].low_temp}
+                    </div>
+                </div>
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[5].datetime}
+                    </div>                    
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[5].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[5].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[5].low_temp}
+                    </div>
+                </div>
+
+                <div className="forecast-day">
+                    <div className="date">
+                        {this.state.data.data[6].datetime}
+                    </div>                    
+                    <div className="forecast-icon">
+                        {this.iconSelector(this.state.data.data[6].weather.icon)}
+                    </div>
+                    <div className="high-temp">
+                        High
+                        {this.state.data.data[6].high_temp}
+                    </div>
+                    <div className="low-temp">
+                        Low
+                        {this.state.data.data[6].low_temp}
+                    </div>
                 </div>
             </div>
         )}
