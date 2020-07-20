@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'Axios';
 
 import a01d from "../../static/assets/images/icons/a01d.png";
 import a01n from "../../static/assets/images/icons/a01n.png";
@@ -64,21 +65,17 @@ import t05d from "../../static/assets/images/icons/t05d.png";
 import u00d from "../../static/assets/images/icons/u00d.png";
 import u00n from "../../static/assets/images/icons/u00n.png";
 
-
-
-
-export default class CurrentWeather extends Component{
+export default class Forecasts extends Component{
     constructor(){
         super()
 
-        this.state = {
-            location: 'yes',
-            data: '',
-            img: "a01d"
+        this.state ={
+            data: ''
         }
-        
-    }
 
+        this.componentDidMount = this.componentDidMount.bind(this)
+    }
+    
     iconSelector(code){
         
         
@@ -342,40 +339,64 @@ export default class CurrentWeather extends Component{
         
     }
 
-    render() {      
-        return(
-            
-            <div className ="weather-conditions">
-                <div className = "current-conditions">
-                    <div className="temperature">
-                        {this.props.location.temp}                        
-                        {this.iconSelector(this.props.location.weather.icon)}
-                        <p>{this.props.location.weather.description}</p>
-                    </div>
-                    <div className="stats-wrapper">
-                        <div className="other-stats">
-                            <div className="stat">Precipitation</div>
-                            <div className="stat">{this.props.location.precip}mph</div>
-                        </div>
-                        <div className="other-stats">
-                            <div className="stat">Wind</div>
-                            <div className="stat">{this.props.location.wind_spd} mph</div>
-                        </div>
-                        <div className="other-stats">
-                            <div className="stat">Cloud Density</div>
-                            <div className="stat">{this.props.location.clouds}</div>
-                        </div>
-                        <div className="other-stats, bottom" >
-                            <div className="stat">Air Quality</div>
-                            <div className="stat">{this.props.location.aqi}</div>
-                        </div>
-                    </div>
-                                
-                    
-                    
-                </div>
+    componentDidMount() {
+        axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${this.props.lat}&lon=${this.props.lon}&key=853c916256714b40961d9c523f5e2727&units=i`)
+            .then(response => {
+                console.log(response.data)
+                this.setState({data: response.data})})
+            .catch(err => {console.log(err);
+        });
+    }
 
-            </div>)
-        }
-       
+    render(){
+        if (this.state.data === ''){
+            return(null)
+        } else {
+        return(
+            <div>
+                <div>
+                    {this.state.data.data[0].high_temp}
+                    {this.state.data.data[0].low_temp}
+                    {this.iconSelector(this.state.data.data[0].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[1].high_temp}
+                    {this.state.data.data[1].low_temp}
+                    {this.iconSelector(this.state.data.data[1].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[2].high_temp}
+                    {this.state.data.data[2].low_temp}
+                    {this.iconSelector(this.state.data.data[2].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[3].high_temp}
+                    {this.state.data.data[3].low_temp}
+                    {this.iconSelector(this.state.data.data[3].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[4].high_temp}
+                    {this.state.data.data[4].low_temp}
+                    {this.iconSelector(this.state.data.data[4].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[5].high_temp}
+                    {this.state.data.data[5].low_temp}
+                    {this.iconSelector(this.state.data.data[5].weather.icon)}
+                </div>
+                <div>
+                    {this.state.data.data[6].high_temp}
+                    {this.state.data.data[6].low_temp}
+                    {this.iconSelector(this.state.data.data[6].weather.icon)}
+                </div>
+                <div>
+                    <div>
+                        {this.state.data.data[7].high_temp}
+                    </div>
+                    {this.state.data.data[7].low_temp}
+                    {this.iconSelector(this.state.data.data[7].weather.icon)}
+                </div>
+            </div>
+        )}
+    }
 }

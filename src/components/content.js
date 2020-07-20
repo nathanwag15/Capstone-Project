@@ -43,10 +43,10 @@ export default class Content extends Component{
 
         this.state = {
             location: 'yes',
-            city: '',
-            state: '',
             display: 'no',
-            image: standard
+            image: standard,
+            lat: '',
+            lon: ''
 
         }
 
@@ -137,21 +137,32 @@ export default class Content extends Component{
             this.setState({image: u00d})
         }
     }
-    keyGetter = (location) => {
-        this.setState({location: location})
-        this.setState({city: location.city_name})
-        this.setState({state: location.state_code})
+
+    passUp(lat, lon) {
+        this.props.passUp(lat, lon);
+    }
+
+    keyGetter = (location, lat, lon) => {
+        this.setState({
+            location: location,
+            lat: lat,
+            lon: lon})
         this.setState({display: 'yes'})
         this.backgroundFunction()
-        console.log(location)
+        this.passUp(this.state.lat, this.state.lon)
     }
 
     renderCurrentWeather() {
+        
         if (this.state.display === 'no') {
             return(null)
         } else if (this.state.display === 'yes'){
+            
             return(
-            <CurrentWeather location = {this.state.location}/>
+                
+            <div>
+                <CurrentWeather location = {this.state.location}/>
+            </div>
             )
         }
     }

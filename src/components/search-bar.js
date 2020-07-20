@@ -24,7 +24,7 @@ export default class SearchBar extends Component{
             .then(response => {
                 this.setState({data: response.data.data[0]})
                 this.setState({options: 'yes'});
-                this.passUp(this.state.data);
+                this.passUp(this.state.data, this.state.data.lat, this.state.data.lon);
                 console.log(this.state.data)})
             .catch(err => {console.log(err);
         });
@@ -33,7 +33,6 @@ export default class SearchBar extends Component{
     }
 
     handleChange(){
-
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -41,8 +40,8 @@ export default class SearchBar extends Component{
 
     
 
-    passUp(location) {
-        this.props.passUp(location);
+    passUp(location, lat, lon) {
+        this.props.passUp(location, lat, lon);
         this.setState({ options: "no"})
     }
 
@@ -50,9 +49,7 @@ export default class SearchBar extends Component{
         return(
             <div className = "search-and-results">
                 <div className = "search-wrapper">
-                    <div className = "search-input">
-
-                        
+                        <div className = "search-input">                        
                             <input 
                                 type="search"
                                 name="location"
@@ -60,12 +57,13 @@ export default class SearchBar extends Component{
                                 value = {this.state.location}
                                 onChange={this.handleChange}
                             />
-
-                            <div className="search-button">
-                                <button type="submit" onClick={() => this.handleSubmit()}>Search</button>
-                            </div>
-
                         </div>
+
+                        <div className="search-button">
+                            <button type="submit" onClick={() => this.handleSubmit()}>Search</button>
+                        </div>
+
+                        
                 </div>
 
 
