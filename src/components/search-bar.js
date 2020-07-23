@@ -25,7 +25,7 @@ export default class SearchBar extends Component{
                 this.setState({data: response.data.data[0]})
                 this.setState({options: 'yes'});
                 this.passUp(this.state.data, this.state.data.lat, this.state.data.lon);
-                console.log(this.state.data)})
+                })
             .catch(err => {console.log(err);
         });
         

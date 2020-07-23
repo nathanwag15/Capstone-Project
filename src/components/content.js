@@ -146,10 +146,11 @@ export default class Content extends Component{
         this.setState({
             location: location,
             lat: lat,
-            lon: lon})
+            lon: lon
+            })
         this.setState({display: 'yes'})
         this.backgroundFunction()
-        this.passUp(this.state.lat, this.state.lon)
+        this.passUp(this.state.lat, this.state.lon, this.state.location)
     }
 
     renderCurrentWeather() {
@@ -171,6 +172,9 @@ export default class Content extends Component{
     return(
         <div className="content-wrapper" style={{backgroundImage: `url(${escape(this.state.image)})`}}>
             <SearchBar passUp = {this.keyGetter}/>
+            <div className ="city">
+                {this.state.location.city_name}, {this.state.location.state_code}
+            </div>
             {this.renderCurrentWeather()}
         </div>)
     }

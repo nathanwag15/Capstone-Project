@@ -20,6 +20,7 @@ import c02n from "../../static/assets/images/icons/c02n.png";
 import c03d from "../../static/assets/images/icons/c03d.png";
 import c03n from "../../static/assets/images/icons/c03n.png";
 import c04d from "../../static/assets/images/icons/c04d.png";
+import c04n from "../../static/assets/images/icons/c04n.png";
 import d01d from "../../static/assets/images/icons/d01d.png";
 import d01n from "../../static/assets/images/icons/d01n.png";
 import d02d from "../../static/assets/images/icons/d02d.png";
@@ -65,18 +66,13 @@ import t05d from "../../static/assets/images/icons/t05d.png";
 import u00d from "../../static/assets/images/icons/u00d.png";
 import u00n from "../../static/assets/images/icons/u00n.png";
 
-
-export default class Forecasts extends Component{
+export default class HourlyForecast extends Component {
     constructor(){
         super()
 
-        this.state ={
-            data: '',
-            days: 14,
-            fourteen: 'no'
+        this.state = {
+            data: ''
         }
-
-        this.componentDidMount = this.componentDidMount.bind(this)
     }
     
     iconSelector(code){
@@ -343,7 +339,7 @@ export default class Forecasts extends Component{
     }
 
     componentDidMount() {
-        axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${this.props.lat}&lon=${this.props.lon}&key=853c916256714b40961d9c523f5e2727&units=i&days=${this.state.days}`)
+        axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${this.props.lat}&lon=${this.props.lon}&key=853c916256714b40961d9c523f5e2727&hours=48&unit=i`)
             .then(response => {
                 console.log(response.data)
                 this.setState({data: response.data})})
@@ -355,7 +351,7 @@ export default class Forecasts extends Component{
         return(      
                 <div className="forecast-day">
                         <div className="date">
-                            {this.state.data.data[number].datetime}
+                            {this.state.data.data[number].timestamp_utc}
                         </div>
                         <div className="forecast-icon">
                             {this.iconSelector(this.state.data.data[number].weather.icon)}
@@ -364,13 +360,9 @@ export default class Forecasts extends Component{
                         <div className="forecast-description">
                             {this.state.data.data[number].weather.description}
                         </div>
-                        <div className="high-temp">
+                        <div className="temp">
                             High
-                            {this.state.data.data[number].high_temp}
-                        </div>
-                        <div className="low-temp">
-                            Low
-                            {this.state.data.data[number].low_temp}
+                            {this.state.data.data[number].temp}
                         </div>
                 </div>
         )
@@ -417,6 +409,7 @@ export default class Forecasts extends Component{
                     </div>
                     {this.fourteenDay()}
                 </div>
-        )}
+            )
+        }
     }
 }

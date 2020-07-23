@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navigation from './navigation';
 import Content from './content';
 import Forecasts from './forecast';
+import HourlyForecast from './hourly-forecast';
 
 export default class App extends Component {  
   constructor(){
@@ -9,7 +10,8 @@ export default class App extends Component {
 
     this.state = {
       lat: '',
-      lon: ''
+      lon: '',
+      location: ''
     }
 
     this.keyGetter = this.keyGetter.bind(this)
@@ -19,7 +21,8 @@ export default class App extends Component {
   keyGetter(lat, lon) {
     this.setState({
       lat: lat,
-      lon: lon})
+      lon: lon
+      })
       console.log(this.state.lat, this.state.lon)
   }
 
@@ -27,9 +30,11 @@ export default class App extends Component {
     if (this.state.lat === ''){
       return(null)
     } else {
-      console.log("hello")
-      return(
-        <Forecasts lat = {this.state.lat} lon = {this.state.lon}/>
+      return(   
+        <div>     
+          <Forecasts lat = {this.state.lat} lon = {this.state.lon}/>
+          <HourlyForecast lat = {this.state.lat} lon={this.state.lon} />
+        </div>
       )
     }
   }

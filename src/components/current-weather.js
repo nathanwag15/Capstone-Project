@@ -92,7 +92,7 @@ export default class CurrentWeather extends Component{
             )
         } else if (code === "a02d"){
             return(
-                <img src={a01d} />
+                <img src={a02d} />
             )
         } else if (code === "a02n"){
             return(
