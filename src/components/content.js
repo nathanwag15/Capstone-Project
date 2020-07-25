@@ -168,13 +168,30 @@ export default class Content extends Component{
         }
     }
 
+    renderLocation(){
+        if (this.state.display === 'no') {
+            return(null)
+        } else if (this.state.display === 'yes'){
+            
+            return(
+                <div className ="city">
+                    {this.state.location.city_name}  {this.state.location.state_code}
+                    <button onClick={() => this.handleAdd()}>ADD</button>
+                </div>
+            )}
+    }
+
+    handleAdd(){
+        return(
+            null
+        )
+    }
+
     render(){
     return(
         <div className="content-wrapper" style={{backgroundImage: `url(${escape(this.state.image)})`}}>
             <SearchBar passUp = {this.keyGetter}/>
-            <div className ="city">
-                {this.state.location.city_name}, {this.state.location.state_code}
-            </div>
+            {this.renderLocation()}
             {this.renderCurrentWeather()}
         </div>)
     }
