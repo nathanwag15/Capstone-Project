@@ -165,7 +165,7 @@ export default class Auth extends Component {
 
    render() {
        return (
-           <div>
+           <div className="toggle-login">
                {this.toggleLogin()}
            </div>
            

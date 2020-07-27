@@ -3,18 +3,40 @@
         width: 100vw;
     }
 
+    .lower-part{
+        padding-top: 150px;
+    }
+
     .content-wrapper{
         height: auto;
         justify-content: space-between;
     }
 
     .navigation-wrapper{
-        width: auto;
+        width: 100vw;
+        height: 150px;
     }
 
+    .toggle-login{
+        height: 100%;
+        width: 100%;
+    }
+    .auth-wrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        height: auto;
+    }
     .form{
+
         .top{
             flex-direction: column;
+
+            
+        }
+
+        button{
+            width: 100%;
         }
     }
 
