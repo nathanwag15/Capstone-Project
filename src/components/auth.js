@@ -54,8 +54,7 @@ export default class Auth extends Component {
                     password: this.state.passwordInput
                 })
             })
-            .then(response => response.json(),
-                 this.handleLogin())
+            .then(response => response.json())
             .then(data => {
                 console.log(data)
 
@@ -65,6 +64,7 @@ export default class Auth extends Component {
                 else {
                     this.setState({ errorMessage: "none" })
                     Cookies.set("username", this.state.usernameInput)
+                    this.handleLogin()
                 }
             })
             .catch(error => {
