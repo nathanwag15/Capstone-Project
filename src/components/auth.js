@@ -54,7 +54,8 @@ export default class Auth extends Component {
                     password: this.state.passwordInput
                 })
             })
-            .then(response => response.json())
+            .then(response => response.json(),
+                 this.handleLogin())
             .then(data => {
                 console.log(data)
 

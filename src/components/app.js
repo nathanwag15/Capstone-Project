@@ -191,7 +191,7 @@ export default class App extends Component {
   }
 
   currentConditions(lat, lon) {
-        axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&units=i`)
+        axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&unit=i`)
             .then(response => {
                 this.setState({location: response.data.data[0]})
                 console.log(this.state.location)
