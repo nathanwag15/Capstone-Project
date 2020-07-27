@@ -95,11 +95,11 @@ export default class Content extends Component{
     handleAdd(){
             const form = new FormData()
             form.append("location", this.props.location.city_name)
-            form.append("lat", this.props.location.lat)
-            form.append("lon", this.props.location.lon)
+            form.append("lat", String(this.props.location.lat))
+            form.append("lon", String(this.props.location.lon))
             form.append("username", Cookies.get("username"))
         
-            fetch("http://127.0.0.1:5000/location/add", {
+            fetch("https://frozen-mountain-91349.herokuapp.com/location/add", {
               method: "POST",
               body: form
             })

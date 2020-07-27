@@ -23,6 +23,7 @@ export default class SearchBar extends Component{
         axios.get(`https://api.weatherbit.io/v2.0/current?city=${location}&key=853c916256714b40961d9c523f5e2727&units=i`)
             .then(response => {
                 this.setState({data: response.data.data[0]})
+                console.log(response)
                 this.setState({options: 'yes'});
                 this.passUp(this.state.data, this.state.data.lat, this.state.data.lon);
                 })

@@ -176,7 +176,7 @@ export default class App extends Component {
   }
 
   getLocations(menu){
-    axios.get(`http://127.0.0.1:5000/location/get/data/${Cookies.get("username")}`)
+    axios.get(`https://frozen-mountain-91349.herokuapp.com/location/get/data/${Cookies.get("username")}`)
           .then(response => 
               {this.setState({data: response.data})
                console.log(this.state.data)
