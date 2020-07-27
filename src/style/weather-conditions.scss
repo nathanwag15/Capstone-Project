@@ -1,6 +1,10 @@
+.current-weather-wrapper{
+    width: 100%;
+}
+
 .weather-conditions {
     height: 400px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,8 +77,25 @@
 
 }
 
-.city-state{
-    font-weight: 900;
+.city{
+    width: 650px;
     text-align: center;
-    font-size: 1.7em;
+    font-size: 2em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .name{
+        font-weight: 900;
+        color: $white;
+    }
+
+    button{
+        height: 30px;
+        width: 100px;
+        border: none;
+        background-color: $lightAccent;
+        color: $white;
+    }
 }
+

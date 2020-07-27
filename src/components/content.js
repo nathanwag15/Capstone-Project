@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SearchBar from './search-bar';
 import CurrentWeather from './current-weather';
+import Cookies from "js-cookie";
+import axios from "axios";
 
 import standard from "../../static/assets/images/weather-systems/default.jpg";
 import t01d from "../../static/assets/images/weather-systems/thunderstorm-with-light-rain.jpg";
@@ -51,147 +53,69 @@ export default class Content extends Component{
         }
 
         this.keyGetter = this.keyGetter.bind(this)
-        this.backgroundFunction = this.backgroundFunction.bind(this)
+        this.renderCurrentWeather = this.renderCurrentWeather.bind(this)
     }
 
-    backgroundFunction() {
-        const code = this.state.location.weather.code
+  
 
-        if (code === "200"){
-            this.setState({image: t01d})
-        } else if (code === "201"){
-            this.setState({image: t02d})
-        } else if (code === "202"){
-            this.setState({image: t03d})
-        } else if (code === "230"){
-            this.setState({image: t04d})
-        } else if (code === "231"){
-            this.setState({image: t04d})
-        } else if (code === "231"){
-            this.setState({image: t04d})
-        } else if (code === "232"){
-            this.setState({image: t04d})
-        } else if (code === "233"){
-            this.setState({image: t05d})
-        } else if (code === "300"){
-            this.setState({image: d01d})
-        } else if (code === "301"){
-            this.setState({image: d02d})
-        } else if (code === "302"){
-            this.setState({image: d03d})
-        } else if (code === "500"){
-            this.setState({image: r01d})
-        } else if (code === "501"){
-            this.setState({image: r02d})
-        } else if (code === "502"){
-            this.setState({image: r03d})
-        } else if (code === "511") {
-            this.setState({image: f01d})
-        } else if (code === "520") {
-            this.setState({image: r04d})
-        } else if (code === "521") {
-            this.setState({image: r05d})
-        } else if (code === "522") {
-            this.setState({image: r06d})
-        } else if (code === "600") {
-            this.setState({image: s01d})
-        } else if (code === "601") {
-            this.setState({image: s02d})
-        } else if (code === "602") {
-            this.setState({image: s03d})
-        } else if (code === "610") {
-            this.setState({image: s04d})
-        } else if (code === "611") {
-            this.setState({image: s05d})
-        } else if (code === "612") {
-            this.setState({image: s05d})
-        } else if (code === "621") {
-            this.setState({image: s01d})
-        } else if (code === "622") {
-            this.setState({image: s02d})
-        } else if (code === "623") {
-            this.setState({image: s06d})
-        } else if (code === "700") {
-            this.setState({image: a01d})
-        } else if (code === "711") {
-            this.setState({image: a02d})
-        } else if (code === "721") {
-            this.setState({image: a03d})
-        } else if (code === "731") {
-            this.setState({image: a04d})
-        } else if (code === "741") {
-            this.setState({image: a05d})
-        } else if (code === "751") {
-            this.setState({image: a06d})
-        } else if (code === "800") {
-            this.setState({image: c01d})
-        } else if (code === "801") {
-            this.setState({image: c02d})
-        } else if (code === "802") {
-            this.setState({image: c02d})
-        } else if (code === "803") {
-            this.setState({image: c03d})
-        } else if (code === "804") {
-            this.setState({image: c04d})
-        } else if (code === "900") {
-            this.setState({image: u00d})
-        }
-    }
-
-    passUp(lat, lon) {
-        this.props.passUp(lat, lon);
+    passUp(lat, lon, location) {
+        this.props.passUp(lat, lon, location);
     }
 
     keyGetter = (location, lat, lon) => {
-        this.setState({
-            location: location,
-            lat: lat,
-            lon: lon
-            })
-        this.setState({display: 'yes'})
-        this.backgroundFunction()
-        this.passUp(this.state.lat, this.state.lon, this.state.location)
+        this.passUp(lat, lon, location)
     }
 
     renderCurrentWeather() {
-        
-        if (this.state.display === 'no') {
-            return(null)
-        } else if (this.state.display === 'yes'){
-            
-            return(
-                
-            <div>
-                <CurrentWeather location = {this.state.location}/>
+        if (this.props.location !== ''){    
+            return(                
+            <div className="current-weather-wrapper">
+                <CurrentWeather location = {this.props.location}/>
             </div>
             )
         }
     }
 
-    renderLocation(){
-        if (this.state.display === 'no') {
-            return(null)
-        } else if (this.state.display === 'yes'){
-            
-            return(
-                <div className ="city">
-                    {this.state.location.city_name}  {this.state.location.state_code}
+    renderLocation(){        
+        if (this.props.location !== ""){
+            return(                
+            <div className ="city">
+                <div className="name">
+                    {this.props.location.city_name}  {this.props.location.state_code}
+                </div>
+                <div className="add">
                     <button onClick={() => this.handleAdd()}>ADD</button>
                 </div>
-            )}
+            </div>
+                )
+        }
+        
     }
 
     handleAdd(){
-        return(
-            null
-        )
+            const form = new FormData()
+            form.append("location", this.props.location.city_name)
+            form.append("lat", this.props.location.lat)
+            form.append("lon", this.props.location.lon)
+            form.append("username", Cookies.get("username"))
+        
+            fetch("http://127.0.0.1:5000/location/add", {
+              method: "POST",
+              body: form
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
     }
+
+   
 
     render(){
     return(
-        <div className="content-wrapper" style={{backgroundImage: `url(${escape(this.state.image)})`}}>
+        <div className="content-wrapper" style={{backgroundImage: `url(${escape(this.props.code)})`}}>
             <SearchBar passUp = {this.keyGetter}/>
-            {this.renderLocation()}
+            {this.handleSubmit}
+            {this.renderLocation() }
             {this.renderCurrentWeather()}
         </div>)
     }

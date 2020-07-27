@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import Cookies from "js-cookie"
+import React, { Component } from 'react';
+import Cookies from "js-cookie";
 
-import Login from "./login"
-import Signup from "./signup"
+import Login from "./login";
+import Signup from "./signup";
 
 export default class Auth extends Component {
    constructor(props) {
@@ -158,6 +158,7 @@ export default class Auth extends Component {
 
    handleSuccessfulLogout(){
        this.setState({LoggedInStatus: "NOT_LOGGED_IN"})
+        Cookies.remove("username")
    }
 
    render() {

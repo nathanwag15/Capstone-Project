@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import moment from "moment";
+
 
 import a01d from "../../static/assets/images/icons/a01d.png";
 import a01n from "../../static/assets/images/icons/a01n.png";
@@ -67,11 +68,12 @@ import u00d from "../../static/assets/images/icons/u00d.png";
 import u00n from "../../static/assets/images/icons/u00n.png";
 
 export default class HourlyForecast extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
 
         this.state = {
-            data: ''
+            data: '',
+            fourteen: 'no'
         }
     }
     
@@ -338,31 +340,31 @@ export default class HourlyForecast extends Component {
         
     }
 
-    componentDidMount() {
-        axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${this.props.lat}&lon=${this.props.lon}&key=853c916256714b40961d9c523f5e2727&hours=48&unit=i`)
-            .then(response => {
-                console.log(response.data)
-                this.setState({data: response.data})})
-            .catch(err => {console.log(err);
-        });
-    }
+    
 
-    forecastGenerator(number) {     
+    forecastGenerator(number) {    
+        var date = moment().add(number, 'hours').calendar();
+        
+        
         return(      
                 <div className="forecast-day">
                         <div className="date">
-                            {this.state.data.data[number].timestamp_utc}
+                            {date}
                         </div>
                         <div className="forecast-icon">
-                            {this.iconSelector(this.state.data.data[number].weather.icon)}
+                            {this.iconSelector(this.props.forecast.data[number].weather.icon)}
                             
                         </div>
                         <div className="forecast-description">
-                            {this.state.data.data[number].weather.description}
+                            {this.props.forecast.data[number].weather.description}
                         </div>
-                        <div className="temp">
-                            High
-                            {this.state.data.data[number].temp}
+                        <div className="temp-wrapper">
+                            <div className="temp-title">
+                                Avg. Temp
+                            </div>
+                            <div className="temp">
+                                {this.props.forecast.data[number].temp}
+                            </div>
                         </div>
                 </div>
         )
@@ -371,7 +373,7 @@ export default class HourlyForecast extends Component {
 
      fourteenDay(){
         if (this.state.fourteen === 'no'){
-            return(<button onClick= {() => this.setState({fourteen: 'yes'})} >14 Day Forecast</button>)
+            return(<button className="fourteen" onClick= {() => this.setState({fourteen: 'yes'})} >14 hour forecast</button>)
         } else {
             return(
                 <div className="forecast-wrapper">
@@ -393,11 +395,11 @@ export default class HourlyForecast extends Component {
     
 
     render(){
-        if (this.state.data === ''){
+        if (this.props.forecast === ''){
             return(null)
         } else {
             return(
-                <div>
+                <div className="hourly-forecast">
                     <div className="forecast-wrapper">
                         {this.forecastGenerator(0)}
                         {this.forecastGenerator(1)}
