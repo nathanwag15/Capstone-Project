@@ -48,22 +48,25 @@ export default class Content extends Component{
             display: 'no',
             image: standard,
             lat: '',
-            lon: ''
+            lon: '',
+            add: "ADD"
 
         }
 
         this.keyGetter = this.keyGetter.bind(this)
         this.renderCurrentWeather = this.renderCurrentWeather.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
     }
 
   
 
     passUp(lat, lon, location) {
-        this.props.passUp(lat, lon, location);
+        this.props.passUp(lat, lon, location);        
     }
 
     keyGetter = (location, lat, lon) => {
         this.passUp(lat, lon, location)
+        this.setState({add: "ADD"})
     }
 
     renderCurrentWeather() {
@@ -84,7 +87,7 @@ export default class Content extends Component{
                     {this.props.location.city_name}  {this.props.location.state_code}
                 </div>
                 <div className="add">
-                    <button onClick={() => this.handleAdd()}>ADD</button>
+                    <button onClick={() => this.handleAdd()}>{this.state.add}</button>
                 </div>
             </div>
                 )
@@ -93,6 +96,7 @@ export default class Content extends Component{
     }
 
     handleAdd(){
+            this.setState({add: "Added"})
             const form = new FormData()
             form.append("location", this.props.location.city_name)
             form.append("lat", String(this.props.location.lat))

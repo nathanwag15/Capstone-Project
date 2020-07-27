@@ -9,8 +9,9 @@
     }
 
     .navigation-wrapper{
-        width: 100vw;
+        width: auto;
     }
+
     .form{
         .top{
             flex-direction: column;
@@ -24,7 +25,7 @@
    
 
     .forecasts-wrapper{
-        width: 400px;
+        width: 100vw;
         display: flex;
         height: auto;
         flex-direction: column;
@@ -77,7 +78,8 @@
     }
     .weather-conditions{
         height: 900px;
-        padding-bottom: 30px;
+        padding-bottom: 5px;
+
         .current-conditions{
             padding-top: 100px;
             width: 300px;
