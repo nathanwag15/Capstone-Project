@@ -64,7 +64,8 @@ export default class Auth extends Component {
                 else {
                     this.setState({ errorMessage: "none" })
                     Cookies.set("username", this.state.usernameInput)
-                    this.handleLogin()
+                    this.handleSuccessfulLogin()
+                    
                 }
             })
             .catch(error => {
