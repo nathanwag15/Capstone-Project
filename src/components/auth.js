@@ -146,8 +146,10 @@ export default class Auth extends Component {
        </div>)
        } else if (this.state.LoggedInStatus=== "LOGGED_IN") {
            return(
-           <div>
-               {this.state.usernameInput}
+           <div className="username-logout">
+               <div className="username">
+                    {this.state.usernameInput}
+               </div>
                <p onClick={() => this.handleSuccessfulLogout()}>Logout</p>
            </div>
             )

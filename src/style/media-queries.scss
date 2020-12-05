@@ -4,7 +4,9 @@
     }
 
     .lower-part{
-        padding-top: 150px;
+        margin: 0px;
+        padding: 0px;
+        height: auto;
     }
 
     .content-wrapper{
@@ -14,15 +16,29 @@
 
     .navigation-wrapper{
         width: 100vw;
-        height: 150px;
+        height: 10%;
     }
 
-    .toggle-login{
-        height: 100%;
+    .navigation-links{
         width: 100%;
+
+        .navigation-link{
+            height: auto;
+        }
+    }
+
+    
+
+    .toggle-login{
+        margin-top: 95px;
+        height: 180px;
+        width: 100%;
+        padding: 10px;
+        background-color: $white;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
+        box-shadow: 0px 6px 17px 0px rgba(0,0,0,0.75);
     }
 
     .auth-wrapper{
@@ -91,18 +107,38 @@
             width: 300px;
             display: flex;
             flex-direction: column;
-            height: 400px;
+            height: 100vh;
+
+            .search-button {
+                border: none;
+                height: 60px;
+                width: 35%;
+                padding: 20px;
+    
+                button {
+                    height: 100%;
+                    width: 100%;
+                    background-color: $white;
+                    border: none;
+                    color: $base;
+                    padding: 10px;
+                    font-weight: 500;
+                    font-size: 1.5em;
+                    
+                }
+            }
             
             .search-input{
-                width: 200px;
+                width: 90%;
                 input{
-                width: 200px;
+                width: 100%;
                 }
             }
     
             
         } 
     }
+
     .weather-conditions{
         height: 900px;
         padding-bottom: 5px;
