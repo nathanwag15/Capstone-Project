@@ -123,7 +123,7 @@ export default class Auth extends Component {
 
    toggleLogin(){
        if (this.state.LoggedInStatus === "NOT_LOGGED_IN"){
-           return(<div className='auth-wrapper'>
+           return(<div className='auth-wrapper toggle-login'>
            {this.state.authMethod === "login" 
                 ? <Login 
                     handleChange={this.handleChange} 
@@ -167,7 +167,7 @@ export default class Auth extends Component {
 
    render() {
        return (
-           <div className="toggle-login">
+           <div>
                {this.toggleLogin()}
            </div>
            
