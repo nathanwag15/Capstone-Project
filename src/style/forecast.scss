@@ -2,6 +2,7 @@
     width: calc(100vw -20px);
 }
 .forecast-wrapper {
+    padding: 20px 0px;
     display: grid;
     width: calc(100% - 20px); 
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -36,8 +37,9 @@
 }
 
 .daily-forecast{
+    padding: 20px 0px;
     display: flex;
-    height: 500px;
+    height: auto;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;

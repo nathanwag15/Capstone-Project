@@ -169,8 +169,8 @@ export default class App extends Component {
   renderForecasts(){
       return(   
         <div className="forecasts-wrapper">     
-          <Forecasts forecast={this.state.hourlyForecast}/>
-          <HourlyForecast  forecast={this.state.dailyForecast} />
+          <Forecasts forecast={this.state.dailyForecast}/>
+          <HourlyForecast  forecast={this.state.hourlyForecast} />
         </div>
       )
   }
@@ -205,7 +205,7 @@ export default class App extends Component {
     }
 
   hourlyForecast(lat, lon) {
-    axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&hours=48&unit=i`)
+    axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&unit=i`)
         .then(response => {
             this.setState({hourlyForecast: response.data})
             console.log(this.state.hourlyForecast)})
