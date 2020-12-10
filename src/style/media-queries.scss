@@ -112,7 +112,7 @@
             width: 300px;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: 80vh;
 
             .search-button {
                 border: none;
@@ -166,6 +166,5 @@
     .city{
         flex-direction: column;
         width: 30vw;
-        margin: -120px;
     }
 }
