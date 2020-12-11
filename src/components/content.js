@@ -74,6 +74,7 @@ export default class Content extends Component{
             return(                
             <div className="current-weather-wrapper">
                 <CurrentWeather location = {this.props.location}/>
+                <h1>Forecast</h1>
             </div>
             )
         }
@@ -117,10 +118,12 @@ export default class Content extends Component{
     render(){
     return(
         <div className="content-wrapper" style={{backgroundImage: `url(${escape(this.props.code)})`}}>
-            <SearchBar passUp = {this.keyGetter}/>
-            {this.handleSubmit}
-            {this.renderLocation() }
-            {this.renderCurrentWeather()}
+            {/* <div className="content-wrapper"> */}
+                <SearchBar passUp = {this.keyGetter}/>
+                {this.handleSubmit}
+                {this.renderLocation() }
+                {this.renderCurrentWeather()}
+            {/* </div> */}
         </div>)
     }
 }

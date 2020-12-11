@@ -9,8 +9,13 @@
         height: auto;
     }
 
+    // .background-wrapper{
+    //     height: auto;
+    // }
+
     .content-wrapper{
         height: auto;
+        min-height: 100vh;
         justify-content: space-between;
     }
 
@@ -62,7 +67,7 @@
     }
 
     .menu-wrapper{
-        margin-top: 15px;
+        margin-top: 80px;
         width: 250px
     }
 

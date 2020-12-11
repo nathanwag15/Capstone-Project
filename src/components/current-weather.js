@@ -19,6 +19,7 @@ import c02n from "../../static/assets/images/icons/c02n.png";
 import c03d from "../../static/assets/images/icons/c03d.png";
 import c03n from "../../static/assets/images/icons/c03n.png";
 import c04d from "../../static/assets/images/icons/c04d.png";
+import c04n from "../../static/assets/images/icons/c04n.png";
 import d01d from "../../static/assets/images/icons/d01d.png";
 import d01n from "../../static/assets/images/icons/d01n.png";
 import d02d from "../../static/assets/images/icons/d02d.png";

@@ -1,5 +1,14 @@
 .current-weather-wrapper{
     width: 100%;
+    align-items: center;
+    h1{
+        margin: 0px;
+        padding-top: 150px;
+        padding-bottom: 10px;
+        text-align: center;
+        color: $white;
+        font-size: 2.5rem;
+    }
 }
 
 .weather-conditions {

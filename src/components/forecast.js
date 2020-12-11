@@ -400,7 +400,7 @@ export default class Forecasts extends Component{
         } else {
             return(
                 <div className="daily-forecast">
-                    <h1>Daily Forecast</h1>
+                    {/* <h1>Daily Forecast</h1> */}
                     <div className="forecast-wrapper">
                         {this.forecastGenerator(0)}
                         {this.forecastGenerator(1)}

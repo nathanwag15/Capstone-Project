@@ -38,6 +38,7 @@ import c01d from "../../static/assets/images/weather-systems/clear-sky.jpg";
 import c02d from "../../static/assets/images/weather-systems/few-clouds.jpg";
 import c03d from "../../static/assets/images/weather-systems/broken-clouds.jpg";
 import c04d from "../../static/assets/images/weather-systems/overcast-clouds.jpg";
+import c04n from "../../static/assets/images/weather-systems/overcast-clouds.jpg";
 import u00d from "../../static/assets/images/weather-systems/default.jpg";
 
 
@@ -61,7 +62,7 @@ export default class App extends Component {
     this.burger =this.burger.bind(this)
     this.getLocations =this.getLocations.bind(this)
     this.lookUp = this.lookUp.bind(this)
-    this.hourlyForecast =this.hourlyForecast.bind(this)
+    // this.hourlyForecast =this.hourlyForecast.bind(this)
     this.dailyForecast =this.dailyForecast.bind(this)
     this.currentConditions =this.currentConditions.bind(this)
     this.backgroundFunction = this.backgroundFunction.bind(this)
@@ -69,84 +70,85 @@ export default class App extends Component {
 
   backgroundFunction() {
     const code = this.state.location.weather.code
+    console.log(code)
 
-    if (code === "200"){
+    if (code == "200"){
         this.setState({image: t01d})
-    } else if (code === "201"){
+    } else if (code == "201"){
         this.setState({image: t02d})
-    } else if (code === "202"){
+    } else if (code == "202"){
         this.setState({image: t03d})
-    } else if (code === "230"){
+    } else if (code == "230"){
         this.setState({image: t04d})
-    } else if (code === "231"){
+    } else if (code == "231"){
         this.setState({image: t04d})
-    } else if (code === "231"){
+    } else if (code == "231"){
         this.setState({image: t04d})
-    } else if (code === "232"){
+    } else if (code == "232"){
         this.setState({image: t04d})
-    } else if (code === "233"){
+    } else if (code == "233"){
         this.setState({image: t05d})
-    } else if (code === "300"){
+    } else if (code == "300"){
         this.setState({image: d01d})
-    } else if (code === "301"){
+    } else if (code == "301"){
         this.setState({image: d02d})
-    } else if (code === "302"){
+    } else if (code == "302"){
         this.setState({image: d03d})
-    } else if (code === "500"){
+    } else if (code == "500"){
         this.setState({image: r01d})
-    } else if (code === "501"){
+    } else if (code == "501"){
         this.setState({image: r02d})
-    } else if (code === "502"){
+    } else if (code == "502"){
         this.setState({image: r03d})
-    } else if (code === "511") {
+    } else if (code == "511") {
         this.setState({image: f01d})
-    } else if (code === "520") {
+    } else if (code == "520") {
         this.setState({image: r04d})
-    } else if (code === "521") {
+    } else if (code == "521") {
         this.setState({image: r05d})
-    } else if (code === "522") {
+    } else if (code == "522") {
         this.setState({image: r06d})
-    } else if (code === "600") {
+    } else if (code == "600") {
         this.setState({image: s01d})
-    } else if (code === "601") {
+    } else if (code == "601") {
         this.setState({image: s02d})
-    } else if (code === "602") {
+    } else if (code == "602") {
         this.setState({image: s03d})
-    } else if (code === "610") {
+    } else if (code == "610") {
         this.setState({image: s04d})
-    } else if (code === "611") {
+    } else if (code == "611") {
         this.setState({image: s05d})
-    } else if (code === "612") {
+    } else if (code == "612") {
         this.setState({image: s05d})
-    } else if (code === "621") {
+    } else if (code == "621") {
         this.setState({image: s01d})
-    } else if (code === "622") {
+    } else if (code == "622") {
         this.setState({image: s02d})
-    } else if (code === "623") {
+    } else if (code == "623") {
         this.setState({image: s06d})
-    } else if (code === "700") {
+    } else if (code == "700") {
         this.setState({image: a01d})
-    } else if (code === "711") {
+    } else if (code == "711") {
         this.setState({image: a02d})
-    } else if (code === "721") {
+    } else if (code == "721") {
         this.setState({image: a03d})
-    } else if (code === "731") {
+    } else if (code == "731") {
         this.setState({image: a04d})
-    } else if (code === "741") {
+    } else if (code == "741") {
         this.setState({image: a05d})
-    } else if (code === "751") {
+    } else if (code == "751") {
         this.setState({image: a06d})
-    } else if (code === "800") {
+    } else if (code == "800") {
         this.setState({image: c01d})
-    } else if (code === "801") {
+    } else if (code == "801") {
         this.setState({image: c02d})
-    } else if (code === "802") {
+    } else if (code == "802") {
         this.setState({image: c02d})
-    } else if (code === "803") {
+    } else if (code == 803) {
         this.setState({image: c03d})
-    } else if (code === "804") {
+    } else if (code == "804") {
         this.setState({image: c04d})
-    } else if (code === "900") {
+    } else if (code == "900") {
         this.setState({image: u00d})
     }
 }
@@ -159,8 +161,9 @@ export default class App extends Component {
       location: location,
       forecast: "yes"
       })
-      this.hourlyForecast(lat, lon)
+    //   this.hourlyForecast(lat, lon)
       this.dailyForecast(lat, lon)
+      this.backgroundFunction()
       
   }
 
@@ -170,7 +173,7 @@ export default class App extends Component {
       return(   
         <div className="forecasts-wrapper">     
           <Forecasts forecast={this.state.dailyForecast}/>
-          <HourlyForecast  forecast={this.state.hourlyForecast} />
+          {/* <HourlyForecast  forecast={this.state.hourlyForecast} /> */}
         </div>
       )
   }
@@ -179,7 +182,7 @@ export default class App extends Component {
     axios.get(`https://frozen-mountain-91349.herokuapp.com/location/get/data/${Cookies.get("username")}`)
           .then(response => 
               {this.setState({data: response.data})
-               console.log(this.state.data)
+            //    console.log(this.state.data)
                this.setState({menu: menu})})
           .catch(error => console.log(error))
 
@@ -196,7 +199,7 @@ export default class App extends Component {
                 this.setState({location: response.data.data[0]})
                 console.log(this.state.location)
                 this.backgroundFunction()
-                this.hourlyForecast(lat, lon)
+                // this.hourlyForecast(lat, lon)
                 this.dailyForecast(lat, lon)
                 this.setState({display: "yes"})
                 })
@@ -204,20 +207,21 @@ export default class App extends Component {
         });
     }
 
-  hourlyForecast(lat, lon) {
-    axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&unit=i`)
-        .then(response => {
-            this.setState({hourlyForecast: response.data})
-            console.log(this.state.hourlyForecast)})
-        .catch(err => {console.log(err);
-    });
-  }
+//   hourlyForecast(lat, lon) {
+//     axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&unit=i`)
+//         .then(response => {
+//             this.setState({hourlyForecast: response.data})
+//             console.log(this.state.hourlyForecast)})
+//         .catch(err => {console.log(err);
+//     });
+//   }
 
   dailyForecast(lat, lon) {
     axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=853c916256714b40961d9c523f5e2727&units=i&days=14`)
         .then(response => {
             this.setState({dailyForecast: response.data})
-            console.log(this.state.dailyForecast)})
+            // console.log(this.state.dailyForecast)
+        })
         .catch(err => {console.log(err);
     });
   }
