@@ -36,7 +36,8 @@
 
     .toggle-login{
         margin-top: 95px;
-        height: 200px;
+        min-height: 100px;
+        height: auto;
         width: 100%;
         padding: 10px;
         background-color: $white;
